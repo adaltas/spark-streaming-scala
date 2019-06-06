@@ -27,7 +27,7 @@ object StreamingDataFrameWriter {
       start()
   }
 
-  def StreamingDataFrameHDFSWriter(sdf: DataFrame, queryName: String): StreamingQuery = {
+  def StreamingDataFrameHdfsWriter(sdf: DataFrame, queryName: String): StreamingQuery = {
     //for the PersistRawTaxiRides and PersistRawTaxiFares queries
     sdf.withColumn("year", year(col("startTime")))
     .withColumn("month", month(col("startTime")))

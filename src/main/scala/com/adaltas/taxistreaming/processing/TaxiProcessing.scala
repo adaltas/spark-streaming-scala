@@ -47,7 +47,7 @@ object TaxiProcessing {
   def appendStartEndNeighbourhoods(df: DataFrame, sparks: SparkSession): DataFrame = {
     // Feature engineering neighborhoods
 
-    val lookupTable = sparks.read.json("NYC_neighborhoods/nbhd.jsonl").select("name", "coord")
+    val lookupTable = sparks.read.json("file:///vagrant/NYC_neighborhoods/nbhd.jsonl").select("name", "coord")
       .collect().map(row => ( row.getAs[String](0) -> row.getSeq[Seq[Double]](1) )).toMap
     val broadcastVar = sparks.sparkContext.broadcast(lookupTable) //use broadcastVar.value from now on
     val manhattanBbox: Vector[(Double, Double)] = Vector(

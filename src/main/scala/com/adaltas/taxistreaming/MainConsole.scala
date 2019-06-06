@@ -9,11 +9,12 @@ import org.apache.spark.sql.types._
 /*
 spark-submit \
   --master yarn --deploy-mode client \
+  --class com.adaltas.taxistreaming.MainConsole \
   --num-executors 2 --executor-cores 1 \
   --executor-memory 5g --driver-memory 4g \
   --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --conf spark.sql.hive.thriftServer.singleSession=true \
-  target/scala-2.11/taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
+  taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
 
 * The application reads data from Kafka topic, parses Kafka messages, processes it, and prints the results in console
 * `TipsInConsole` query writes the streaming results to stdout of the Spark Driver
@@ -45,10 +46,9 @@ object MainConsole {
       StructField("paymentType", StringType), StructField("tip", FloatType),
       StructField("tolls", FloatType), StructField("totalFare", FloatType)))
 
-    //master02.cluster:6667 <-> localhost:9092
     var sdfRides = spark.readStream.
       format("kafka").
-      option("kafka.bootstrap.servers", "localhost:9092").
+      option("kafka.bootstrap.servers", "master02.cluster:6667").
       option("subscribe", "taxirides").
       option("startingOffsets", "latest").
       load().
@@ -56,7 +56,7 @@ object MainConsole {
 
     var sdfFares= spark.readStream.
       format("kafka").
-      option("kafka.bootstrap.servers", "localhost:9092").
+      option("kafka.bootstrap.servers", "master02.cluster:6667").
       option("subscribe", "taxifares").
       option("startingOffsets", "latest").
       load().
