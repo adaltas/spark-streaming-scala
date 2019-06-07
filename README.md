@@ -55,7 +55,7 @@ Guidelines for the Ambari Installer wizard:
 
 [Zillow](https://www.zillow.com/) shared New York state neighborhoods Shapefile under the Creative Commons license. The files seem to disappeared from their website, but they are available in this repository in the directory "NYC_neighborhoods".
 
-The Shapefiles include the outlines of New York City neighborhoods. They are used by the "NYC_neighborhoods/prep-nbhds.py" Python script that creates a "NYC_neighborhoods/nbhd.jsonl" file with neighborhoods data needed for the purpose of the part 1 and part 2 articles.
+The Shapefiles include the outlines of New York City neighborhoods. They are used by the "NYC_neighborhoods/prep-nbhds.py" Python script that creates a "NYC_neighborhoods/nbhd.jsonl" file with neighborhoods data needed for the purpose of series.
 
 ## Launching the code
 
@@ -71,12 +71,15 @@ The application in variant MainX (where X can be *Console*, *Hdfs*, *Memory*, or
 ```
 spark-submit \
   --master yarn --deploy-mode client \
+  --class com.adaltas.taxistreaming.MainX \
   --num-executors 2 --executor-cores 1 \
   --executor-memory 5g --driver-memory 4g \
   --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --conf spark.sql.hive.thriftServer.singleSession=true \
-  target/scala-2.11/taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
+  /vagrant/taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
 ```
+
+Give a proper class name, e.g. `com.adaltas.taxistreaming.MainConsole`. Make sure that you give a right path to the compiled jar. You can run `vagrant rsync-auto` to ensure that the jar from the project directory on the host machine was distributed to the `/vagrant` directory on guest machines (cluster nodes).
 
 Once the application started, launch the stream of data from `master02.cluster` as `root` or `kafka`:
 

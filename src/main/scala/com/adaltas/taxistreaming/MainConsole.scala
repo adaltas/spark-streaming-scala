@@ -14,7 +14,7 @@ spark-submit \
   --executor-memory 5g --driver-memory 4g \
   --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
   --conf spark.sql.hive.thriftServer.singleSession=true \
-  taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
+  /vagrant/taxi-streaming-scala_2.11-0.1.0-SNAPSHOT.jar
 
 * The application reads data from Kafka topic, parses Kafka messages, processes it, and prints the results in console
 * `TipsInConsole` query writes the streaming results to stdout of the Spark Driver
