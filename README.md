@@ -1,9 +1,9 @@
 
-This project translates the PySpark application code from [spark-streaming-pyspark](https://github.com/adaltas/spark-streaming-pyspark) to Scala Spark application code and adds unit tests as explained in the article [Spark Streaming part 3: todo](todo). This repository accompanies mainly the part 3, but it builds on all parts from the series:
+This project translates the PySpark application code from [spark-streaming-pyspark](https://github.com/adaltas/spark-streaming-pyspark) to Scala Spark application code and adds unit tests as explained in the article [Spark Streaming part 3: tools and tests for Spark applications](http://www.adaltas.com/en/2019/06/19/spark-devops-tools-test/). This repository accompanies mainly the part 3, but it builds on all parts from the series:
 
 * [Spark Streaming part 1: build data pipelines with Spark Structured Streaming](http://www.adaltas.com/en/2019/04/18/spark-streaming-data-pipelines-with-structured-streaming/)
 * [Spark Streaming part 2: run Spark Structured Streaming pipelines in Hadoop](http://www.adaltas.com/en/2019/05/28/spark-structured-streaming-in-hadoop/)
-* [Spark Streaming part 3: testing and Spark applications](not-published-yet)
+* [Spark Streaming part 3: tools and tests for Spark applications](http://www.adaltas.com/en/2019/06/19/spark-devops-tools-test/)
 
 ## Setup a VM cluster and prepare the environment for the HDP installation
 
